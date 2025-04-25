@@ -8,6 +8,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -17,7 +19,7 @@ const Login = () => {
     };
 
     axios
-      .post("http://localhost:3000/users/login", userdata)
+      .post(`${baseUrl}/users/login`, userdata)
       .then((res) => {
         console.log("Login successful:", res);
 

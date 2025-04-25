@@ -8,15 +8,14 @@ export default function UsersPage() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/users/allusers",
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/users/allusers`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setUsers(response.data);
       } catch (err) {
         console.error("Error loading users", err);

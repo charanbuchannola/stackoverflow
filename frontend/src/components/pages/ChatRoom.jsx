@@ -18,8 +18,10 @@ export default function ChatRoom() {
   const messagesEndRef = useRef(null);
   const ignoreChange = useRef(false); // <== Important fix
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   useEffect(() => {
-    const newSocket = io("http://localhost:3000", {
+    const newSocket = io(baseUrl, {
       auth: { token: localStorage.getItem("token") },
     });
 
@@ -88,7 +90,6 @@ export default function ChatRoom() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-screen p-4 gap-4">
-     
       {/* Chat Section */}
       <div className="flex flex-col rounded-2xl overflow-hidden bg-[#1E1E1E] border border-gray-700 shadow-inner">
         <div className="px-4 py-3 bg-[#2A2A2A] text-white text-lg font-semibold border-b border-gray-700 shadow-sm">

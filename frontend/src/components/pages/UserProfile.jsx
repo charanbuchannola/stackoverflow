@@ -12,15 +12,14 @@ export default function UserProfile() {
   const [activeTab, setActiveTab] = useState("Summary");
   const token = localStorage.getItem("token");
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/users/user/${id}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        const response = await axios.get(`${baseUrl}/users/user/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setUser(response.data);
       } catch (err) {
         setError(

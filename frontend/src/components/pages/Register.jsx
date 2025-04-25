@@ -10,6 +10,8 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   const handleFileChange = (e) => {
     setMedia(e.target.files[0]);
   };
@@ -27,13 +29,9 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post(
-        "http://localhost:3000/users/register",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const res = await axios.post(`${baseUrl}/users/register`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
       console.log("Registration successful:", res);
       localStorage.setItem("token", res.data.token);

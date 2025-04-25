@@ -1,6 +1,8 @@
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:3000", {
+const baseUrl = "https://stackwave-h1x0.onrender.com";
+
+const socket = io(baseUrl, {
   auth: {
     token: localStorage.getItem("token"),
   },

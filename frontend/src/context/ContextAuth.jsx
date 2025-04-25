@@ -8,9 +8,11 @@ export const useAuth = () => useContext(AuthContext);
 const Context = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   const checkAuth = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/users/me", {
+      const response = await axios.get(`${baseUrl}/users/me`, {
         withCredentials: true,
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });

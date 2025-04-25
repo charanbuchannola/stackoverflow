@@ -27,6 +27,8 @@ export default function AskQuestion() {
   const [tags, setTags] = useState("");
   const [preview, setPreview] = useState(false);
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   const insertAtCursor = (text) => {
     const textarea = document.getElementById("markdown-editor");
     const start = textarea.selectionStart;
@@ -64,7 +66,7 @@ export default function AskQuestion() {
       }
 
       const res = await axios.post(
-        "http://localhost:3000/questions/createquestion",
+        `${baseUrl}/questions/createquestion`,
         { title, body, tags: tags.split(",").map((tag) => tag.trim()) },
         {
           headers: {

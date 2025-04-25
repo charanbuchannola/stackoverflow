@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
@@ -7,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export default function ProfilePage() {
-  
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
   const { id } = useParams();
 
   const [questions, setQuestions] = useState([]);
@@ -16,9 +14,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const questionsRes = await axios.get(
-          `http://localhost:3000/questions/user/${id}`
-        );
+        const questionsRes = await axios.get(`${baseUrl}/questions/user/${id}`);
         setQuestions(questionsRes.data);
       } catch (err) {
         console.error("Error fetching while profile:", err);

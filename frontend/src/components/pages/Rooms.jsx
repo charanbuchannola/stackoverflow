@@ -10,15 +10,16 @@ export default function RoomsPage() {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [userRes, roomsRes] = await Promise.all([
-          axios.get("http://localhost:3000/users/me", {
+          axios.get(`${baseUrl}/users/me`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://localhost:3000/chat/rooms", {
+          axios.get(`${baseUrl}/chat/rooms`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -34,7 +35,7 @@ export default function RoomsPage() {
   const handleJoin = async (roomId) => {
     try {
       await axios.post(
-        `http://localhost:3000/chat/room/${roomId}`,
+        `${baseUrl}/chat/room/${roomId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -52,7 +53,7 @@ export default function RoomsPage() {
     if (!confirmed) return;
 
     try {
-      await axios.delete(`http://localhost:3000/chat/room/${roomId}`, {
+      await axios.delete(`${baseUrl}/chat/room/${roomId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRooms((prev) => prev.filter((room) => room._id !== roomId));

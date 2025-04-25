@@ -12,11 +12,13 @@ export default function CreateRoom() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   const handleCreate = async () => {
     if (!question.trim() || !tech.trim()) return;
     try {
       await axios.post(
-        "http://localhost:3000/chat/create",
+        `${baseUrl}/chat/create`,
         { question, techCategory: tech },
         { headers: { Authorization: `Bearer ${token}` } }
       );

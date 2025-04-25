@@ -10,17 +10,16 @@ export default function QuestionDetailsPage() {
   const [newAnswer, setNewAnswer] = useState("");
   const [submitError, setSubmitError] = useState("");
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:3000/questions/question/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+        const res = await axios.get(`${baseUrl}/questions/question/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
         setQuestion(res.data.question);
       } catch (err) {
         console.error("Error fetching question:", err);
@@ -37,7 +36,7 @@ export default function QuestionDetailsPage() {
 
     try {
       const res = await axios.post(
-        `http://localhost:3000/questions/createanswer/${id}`,
+        `${baseUrl}/questions/createanswer/${id}`,
         { content: newAnswer },
         {
           headers: {

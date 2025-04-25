@@ -15,17 +15,16 @@ export default function HomePage() {
   const { user } = useAuth();
   const [questions, setQuestions] = useState([]);
 
+  const baseUrl = "https://stackwave-h1x0.onrender.com";
+
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:3000/questions/getquestions",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`, // or from context/cookie if you don't use localStorage
-            },
-          }
-        );
+        const res = await axios.get(`${baseUrl}/questions/getquestions`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // or from context/cookie if you don't use localStorage
+          },
+        });
         setQuestions(res.data.questions);
       } catch (err) {
         console.error("Failed to fetch questions:", err);
